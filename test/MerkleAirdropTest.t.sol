@@ -5,7 +5,7 @@ pragma solidity ^0.8.24;
 import {Test, console} from "forge-std/Test.sol";
 import {MerkleAirdrop} from "../src/MerkleAirdrop.sol";
 import {BagelToken} from "../src/BagelToken.sol";
-import {ZkSyncChainChecker} from "lib/foundry-devops/src/ZkSyncChainChecker.sol";
+import {ZkSyncChainChecker} from "foundry-devops/src/ZkSyncChainChecker.sol";
 import {DeployMerkleAidrop} from "../script/DeployMerkleAirdrop.s.sol";
 
 contract MerkleAirdropTest is ZkSyncChainChecker, Test {
@@ -23,7 +23,7 @@ contract MerkleAirdropTest is ZkSyncChainChecker, Test {
     uint256 userPrivKey;
 
     function setUp() public {
-        if (isZkSyncChain()) {
+        if (!isZkSyncChain()) {
             DeployMerkleAidrop deployer = new DeployMerkleAidrop();
             (airdrop, token) = deployer.deployMerkleAirdrop();
         } else {
