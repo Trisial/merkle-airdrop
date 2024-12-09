@@ -23,7 +23,7 @@ contract MerkleAirdropTest is ZkSyncChainChecker, Test {
     uint256 userPrivKey;
 
     function setUp() public {
-        if (!isZkSyncChain()) {
+        if (isZkSyncChain()) {
             DeployMerkleAidrop deployer = new DeployMerkleAidrop();
             (airdrop, token) = deployer.deployMerkleAirdrop();
         } else {
